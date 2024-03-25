@@ -10,14 +10,13 @@ def is_prime(n, i=2):
     # Check for next divisor
     return is_prime(n, i + 1)
 
-def find_primes_in_range(x, y, aux=None):
-    if aux is None:
-        aux = []
+def find_primes_in_range(x, y):
     if x > y:
-        return aux
+        return []
     if is_prime(x):
-        aux.append(x)
-    return find_primes_in_range(x + 1, y, aux)
+        return [x] + find_primes_in_range(x + 1, y)
+    else:
+        return find_primes_in_range(x + 1, y)
 
 def find_max_interval(aux, i=0, max_interval=0):
     if i >= len(aux) - 1:
